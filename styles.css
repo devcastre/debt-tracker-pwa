@@ -1,0 +1,579 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+
+    --base: #e1e1e1;
+    --primary: #000000;
+    --secondary: #ffffff;
+    --major: #12aa9f;
+    --gradient1: linear-gradient(0deg, #13C9BD, #09635D);/* ^ */
+    --gradient2: linear-gradient(90deg, #13C9BD, #09635D);/* > */
+    --gradient3: linear-gradient(270deg, #13C9BD, #09635D);
+    --gradient4: linear-gradient(135deg, #13C9BD, #09635D);
+    
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+nav {
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    background: var(--gradient4);
+    
+}
+
+nav button{
+    width: 100%;
+    
+
+}
+
+
+
+/* generalize tag*/
+
+li{
+    list-style: none;
+}
+
+ul{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+a{
+    text-decoration: none;
+}
+
+button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    background: var(--major);
+    color: var(--secondary);
+}
+
+label{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: start;
+    align-items: center;
+}
+
+h1{
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+h2{
+    font-size: 22px;
+    
+}
+
+h4{
+    font-size: 20px;
+    font-weight: lighter;
+    text-decoration: underline;
+}
+
+label h4{
+    text-decoration: none;
+    font-size: 16px;
+}
+
+label input{
+    padding: 10px;
+}
+
+span{
+    font-size: 14px;
+}
+
+input{
+    width: 100%;
+    border: none;
+}
+
+svg{
+    width: 1.5em;
+    height: 1.5em;
+    stroke: var(--secondary);
+    stroke-width: 1.5;
+    fill: none;
+}
+
+
+
+
+
+
+
+/* page layout */
+
+.page {
+    display: none;
+    
+    
+}
+
+.page:not(.hidden) {
+    height: 90%;
+    padding: 20px;
+    background: var(--base);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.searchBar{
+    width: 100%;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    padding: 5px 15px;
+}
+
+.contentContainer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profilePic{
+    height: 100px;
+    width: 100px;
+}
+
+.backFrame{
+    width: 100%;
+    height: fit-content;
+}
+
+
+.navBtn.active{
+    background: var(--base);
+    color: var(--major);
+    font-weight: bold;
+    margin: 0 10px 10px 10px;
+    border-radius: 0 0 15px 15px;
+    box-shadow: inset 0 -4px 4px rgba(0, 0, 0, 0.5);
+
+}
+
+.navBtn{
+    background: none;
+    color: var(--secondary);
+}
+
+.backBtn{
+    position: absolute;
+    top: 4.5%;
+    left: 4.5%;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 100%;
+    background: var(--gradient4);
+    padding: 8px;
+}
+
+.debtor-name, 
+#debtor-name, 
+#manageDebtor-name, 
+#addDebt-name, 
+#minusDebt-name{
+    text-transform: capitalize;
+}
+
+
+.profPicContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px 0;
+
+}
+
+.remainingDebtContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+
+
+
+
+
+
+
+/* dashboard tab */
+
+.debtorsList{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.debtors{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    background: var(--major);
+    color: var(--secondary);
+    justify-items: start;
+    padding: 10px;
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+/* debtors-info tab */
+
+.paymentHistory-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.debtHistory-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* creditors tab */
+
+.largeIcons{
+    height: 65px;
+    width: 65px;
+    background: var(--gradient4);
+    border-radius: 100%;
+    position: fixed;
+    bottom: 12vh;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--secondary);
+    font-size: 4rem;
+    box-shadow:  9px 9px 11px #b5b5b5,
+                -5px -5px 11px #f1f1f1;
+}
+
+.largeIcons svg{
+    width: 0.5em;
+    height: 0.5em;
+    stroke: var(--secondary);
+    stroke-width: 1.5;
+    fill: none;
+}
+
+
+#creditors-list .debtors{
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    background: var(--major);
+    color: var(--secondary);
+    align-items: center;
+    justify-items: start;
+    padding: 5px 10px;
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#debtorTrashBtn{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#trashIcon{
+    width: 2em;
+    height: 2em;
+    stroke: var(--secondary);
+    stroke-width: 1.5;
+    fill: none;
+    
+}
+
+
+
+
+
+
+
+
+
+
+/* manage tab */
+
+.profPicContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#updatePicture, #inputPicture{
+    display: none;
+}
+
+.managePicBtn{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    padding: 20px;
+    right: 0;
+}
+
+#chooseDPLabel, #inputDPLabel, .removePictureBtn{
+    background: var(--gradient4);
+    color: var(--secondary);
+    height: 30px;
+    width: 30px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    border-radius: 100%;
+    z-index: 1000;
+}
+
+
+
+
+.manageDebts{
+    width: calc(100% + 40px);
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 -20px;
+    gap: 40px;
+}
+
+.manageAmountBtn{
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    padding: 15px 20px;
+    color: var(--secondary);
+}
+
+#deductDebt{
+    background: var(--gradient2);
+    border-radius: 0 15px 15px 0;
+    margin-right: 50px;
+}
+
+#addDebt{
+    background: var(--gradient3);
+    border-radius: 15px 0 0 15px;
+    margin-left: 50px;
+}
+
+#deductDebt:hover{
+    margin-right: 0;
+}
+
+#addDebt:hover{
+    margin-left: 0;
+}
+
+.updateDebtAmount, #submitAddDebtors{
+    background: var(--gradient2);
+    padding: 15px 20px;
+    border-radius: 25px;
+    width: 100%;
+    box-shadow:  9px 9px 11px #b5b5b5,
+                -5px -5px 11px #f1f1f1;
+}
+
+
+#addInputs, #minusInputs{
+    display: flex;
+    flex-direction: column;
+}
+
+#addInputs label, #minusInputs label{
+    padding: 10px;
+}
+#addInputs label input, #minusInputs label input{
+    padding: 10px;
+    border-radius: 3px;
+}
+
+#addInputs button, #minusInputs button{
+    margin: 50px 0;
+}
+
+
+
+
+
+
+
+/* add-debtors*/
+
+#inputDPLabel{
+    position: absolute;
+    margin: 0 20px;
+    right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*trash tab*/
+
+#trash-list .debtors{
+    display: grid;
+    grid-template-columns: 4fr 2fr 1fr 1fr;
+    background: var(--major);
+    color: var(--secondary);
+    align-items: center;
+    justify-items: start;
+    padding: 5px 10px;
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    gap: 20px;
+}
+
+#debtorRestoreBtn{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#debtorRestoreBtnIcon{
+    width: 2em;
+    height: 2em;
+    stroke: var(--secondary);
+    stroke-width: 1.5;
+    fill: none; 
+}
+
+#debtorDeleteBtn{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#debtorDeleteBtnIcon{
+    width: 2em;
+    height: 2em;
+    stroke: var(--secondary);
+    stroke-width: 1.5;
+    fill: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Basic modal styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: white;
+    padding: 50px 30px;
+    margin: 15%;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.modal-actions{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.modal-actions button {
+    width: 100%;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
