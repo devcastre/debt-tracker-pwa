@@ -1,7 +1,7 @@
 {
     "name": "Creditors Debt Tracker",
     "short_name": "CDT",
-    "start_url": "./index.html",
+    "start_url": "/index.html",
     "display": "standalone",
     "background_color": "#e1e1e1",
     "theme_color": "#1a73e8",
