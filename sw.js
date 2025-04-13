@@ -4,7 +4,7 @@ const urlsToCache = [
   "index.html",
   "styles.css",
   "js file/script.js",
-  "js file/db.js",
+  "js file/dataBase.js",
   "manifest.json",
   "image/default-profile-picture1.png",
   "icons/icon-192.png",
