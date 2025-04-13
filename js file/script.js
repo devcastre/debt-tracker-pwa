@@ -242,7 +242,7 @@ async function loadDebtorsInfo(debtorId) {
         debtorImageElement.src = `data:${mimeType};base64,${debtor.inputPictureBase64}`;
     } else {
         
-        debtorImageElement.src = 'image/default-profile-picture1.png'; 
+        debtorImageElement.src = '/image/default-profile-picture1.png'; 
     }
 
     document.querySelectorAll(".remainingBalances").forEach((el) => {
@@ -381,7 +381,7 @@ async function loadManageDebtors(debtorId) {
         const mimeType = detectMimeType(debtor.inputPictureBase64);
         debtorImageElement.src = `data:${mimeType};base64,${debtor.inputPictureBase64}`;
     } else {
-        debtorImageElement.src = "image/default-profile-picture1.png";
+        debtorImageElement.src = "/image/default-profile-picture1.png";
     }
 
    
@@ -436,7 +436,7 @@ async function loadManageDebtors(debtorId) {
 
    
     newRemovePictureBtn.addEventListener("click", async function () {
-        debtorImageElement.src = "image/default-profile-picture1.png";
+        debtorImageElement.src = "/image/default-profile-picture1.png";
 
      
         const dbUpdate = await openDB();
@@ -498,7 +498,7 @@ async function addDebtBtn(debtorId) {
             debtorImageElement.src = `data:${mimeType};base64,${debtor.inputPictureBase64}`;
         } else {
             
-            debtorImageElement.src = 'image/default-profile-picture1.png'; 
+            debtorImageElement.src = '/image/default-profile-picture1.png'; 
         }   
      
         document.querySelectorAll(".remainingBalances").forEach((el) => {
@@ -545,7 +545,7 @@ async function minusDebtBtn(debtorId) {
             debtorImageElement.src = `data:${mimeType};base64,${debtor.inputPictureBase64}`;
         } else {
             
-            debtorImageElement.src = 'image/default-profile-picture1.png';
+            debtorImageElement.src = '/image/default-profile-picture1.png';
         }    
      
         document.querySelectorAll(".remainingBalances").forEach((el) => {
