@@ -1,14 +1,14 @@
 const CACHE_NAME = "debt-tracker-cache-v1";
 const urlsToCache = [
   "/",
-  "/index.html",
-  "/styles.css",
-  "/js file/script.js",
-  "/js file/db.js",
-  "/manifest.json",
+  "index.html",
+  "styles.css",
+  "js file/script.js",
+  "js file/db.js",
+  "manifest.json",
   "image/default-profile-picture1.png",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png"
+  "icons/icon-192.png",
+  "icons/icon-512.png"
 ];
 
 // Install Service Worker
