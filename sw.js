@@ -1,6 +1,5 @@
 const CACHE_NAME = "debt-tracker-cache-v1";
 const urlsToCache = [
-  "/",
   "404.html",
   "index.html",
   "styles.css",
