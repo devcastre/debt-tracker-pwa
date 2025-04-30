@@ -1,7 +1,7 @@
 const CACHE_NAME = "debt-tracker-cache-v1";
 const urlsToCache = [
-  "404.html",
   "index.html",
+  "404.html",  
   "styles.css",
   "js file/script.js",
   "js file/dataBase.js",
@@ -30,7 +30,10 @@ self.addEventListener("install", event => {
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+      return response || fetch(event.request).catch(() => {
+        return caches.match("404.html");
+      });
     })
   );
 });
+
