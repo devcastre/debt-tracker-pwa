@@ -771,48 +771,32 @@ document.addEventListener("click", function (event) {
 
 //DOWNLOAD/BACKUP DATAS
 
-document.getElementById('downloadDatas').addEventListener('click', function() {
-    
+document.getElementById('downloadDatas').addEventListener('click', function () {
     getDebtorsData().then(debtors => {
-
-    
-    const activeDebtors = debtors.filter(d => !d.deleted);
-    activeDebtors.sort((a, b) => b.balance - a.balance);
-     
-
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
+      const activeDebtors = debtors.filter(d => !d.deleted);
+      activeDebtors.sort((a, b) => b.balance - a.balance);
   
-     
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(16);
-      doc.text('Debtors Information Backup', 20, 20);
+      // Prepare data for Excel
+      const excelData = activeDebtors.map(debtor => ({
+        Name: debtor.inputDebtorsName,
+        "Remaining Balance": debtor.balance,
+        Contact: debtor.inputContactNo
+      }));
   
-   
-      doc.setFontSize(12);
-      let yOffset = 30;
+      // Convert to worksheet
+      const worksheet = XLSX.utils.json_to_sheet(excelData);
   
-     
-      activeDebtors.forEach(debtor => {
-        doc.text(`Name: ${debtor.inputDebtorsName}`, 20, yOffset);
-        doc.text(`Remaining Balance: $${debtor.balance}`, 20, yOffset + 10);
-        doc.text(`Contact: ${debtor.inputContactNo}`, 20, yOffset + 20);
-        
-        yOffset += 30; 
+      // Create workbook and append worksheet
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Debtors");
   
-        
-        if (yOffset > 250) {
-          doc.addPage();
-          yOffset = 20;
-        }
-      });
-  
-      
-      doc.save('debtors_backup.pdf');
+      // Download as Excel file
+      XLSX.writeFile(workbook, "debtors_backup.xlsx");
     }).catch(error => {
       console.error("Error fetching debtor data:", error);
     });
   });
+  
   
 
 
