@@ -776,54 +776,27 @@ document.getElementById('downloadDatas').addEventListener('click', function () {
       const activeDebtors = debtors.filter(d => !d.deleted);
       activeDebtors.sort((a, b) => b.balance - a.balance);
   
+      // Prepare data for Excel
       const excelData = activeDebtors.map(debtor => ({
         Name: debtor.inputDebtorsName,
-        "Remaining Balance": `₱${debtor.balance.toLocaleString()}`,
+        "Remaining Balance": debtor.balance,
         Contact: debtor.inputContactNo
       }));
   
-      // Create worksheet
-      const worksheet = XLSX.utils.json_to_sheet(excelData, { origin: 'A2' });
+      // Convert to worksheet
+      const worksheet = XLSX.utils.json_to_sheet(excelData);
   
-      // Add bold headers manually in row 1
-      const headers = ["Name", "Remaining Balance", "Contact"];
-      XLSX.utils.sheet_add_aoa(worksheet, [headers], { origin: "A1" });
-  
-      // Manually set column widths based on content
-      const colWidths = headers.map((header, i) => {
-        const maxLength = Math.max(
-          header.length,
-          ...excelData.map(row => Object.values(row)[i]?.toString().length || 0)
-        );
-        return { wch: maxLength + 4 }; // Add some padding
-      });
-      worksheet["!cols"] = colWidths;
-  
-      // Center align all cells
-      const range = XLSX.utils.decode_range(worksheet['!ref']);
-      for (let R = range.s.r; R <= range.e.r; ++R) {
-        for (let C = range.s.c; C <= range.e.c; ++C) {
-          const cell_address = { c: C, r: R };
-          const cell_ref = XLSX.utils.encode_cell(cell_address);
-          if (!worksheet[cell_ref]) continue;
-          if (!worksheet[cell_ref].s) worksheet[cell_ref].s = {};
-          worksheet[cell_ref].s.alignment = { horizontal: "center", vertical: "center" };
-  
-          // Make first row bold
-          if (R === 0) {
-            worksheet[cell_ref].s.font = { bold: true };
-          }
-        }
-      }
-  
-      // Create workbook and export
+      // Create workbook and append worksheet
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "Debtors");
+  
+      // Download as Excel file
       XLSX.writeFile(workbook, "debtors_backup.xlsx");
     }).catch(error => {
       console.error("Error fetching debtor data:", error);
     });
   });
+  
   
   
   
