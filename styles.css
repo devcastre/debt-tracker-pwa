@@ -246,6 +246,7 @@ svg{
     padding: 10px;
     height: 40px;
     width: 100%;
+    max-width: 768px;
     border-radius: 5px;
 }
 
