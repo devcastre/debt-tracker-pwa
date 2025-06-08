@@ -142,6 +142,7 @@ svg{
 
 .searchBar{
     width: 100%;
+    max-width: 768px;
     height: 30px;
     border: none;
     outline: none;
@@ -235,6 +236,7 @@ svg{
     gap: 20px;
     height: 100%;
     width: 100%;
+    align-items: center;
 }
 
 .debtors{
@@ -245,7 +247,7 @@ svg{
     justify-items: start;
     padding: 10px;
     height: 40px;
-    width: 100%;
+    width: 50%;
     max-width: 768px;
     border-radius: 5px;
 }
