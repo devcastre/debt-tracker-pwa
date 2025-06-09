@@ -132,7 +132,8 @@ async function addNewDebtor() {
     const inputContactNo = document.getElementById("inputContactNo").value;
     const inputInitialDebt = parseFloat(document.getElementById("inputInitialDebt").value);
     const inputFirstDate = document.getElementById("inputFirstDate").value;
-    const inputFile = document.getElementById('inputPicture').files[0];
+    const inputFileElement = document.getElementById('inputPicture');
+    const inputFile = inputFileElement.files[0];
 
 
     if (!inputDebtorsName || !inputContactNo || isNaN(inputInitialDebt) || !inputFirstDate) {
@@ -141,6 +142,7 @@ async function addNewDebtor() {
     }
 
     let inputPictureBase64 = null;
+    const newDebtorPic = document.getElementById('newDebtorPic');
 
 
     if (inputFile) {
@@ -152,6 +154,10 @@ async function addNewDebtor() {
 
 
     document.querySelectorAll("input").forEach(input => input.value = "");
+
+    inputFileElement.value = '';
+
+    newDebtorPic.src = '/image/default-profile-picture1.png'
 
  
     loadDashboardList();
