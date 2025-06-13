@@ -75,6 +75,7 @@ function minusdebtToManageDebtors() {
 
 function adddebtorsToCreditors() {
     showPage('creditors');
+    
 }
 
 
@@ -132,8 +133,7 @@ async function addNewDebtor() {
     const inputContactNo = document.getElementById("inputContactNo").value;
     const inputInitialDebt = parseFloat(document.getElementById("inputInitialDebt").value);
     const inputFirstDate = document.getElementById("inputFirstDate").value;
-    const inputFileElement = document.getElementById('inputPicture');
-    const inputFile = inputFileElement.files[0];
+    const inputFile = document.getElementById('inputPicture').files[0];
 
 
     if (!inputDebtorsName || !inputContactNo || isNaN(inputInitialDebt) || !inputFirstDate) {
@@ -142,7 +142,6 @@ async function addNewDebtor() {
     }
 
     let inputPictureBase64 = null;
-    const newDebtorPic = document.getElementById('newDebtorPic');
 
 
     if (inputFile) {
@@ -155,15 +154,18 @@ async function addNewDebtor() {
 
     document.querySelectorAll("input").forEach(input => input.value = "");
 
-    inputFileElement.value = '';
+    document.getElementById('inputPicture').value = '';
 
-    newDebtorPic.src = '/image/default-profile-picture1.png'
+    const previewImg = document.getElementById('newDebtorPic');
+    if (previewImg) {
+        previewImg.src = '/image/default-profile-picture1.png';
+    }
 
  
     loadDashboardList();
     loadCreditorsList();
     adddebtorsToCreditors();
-}
+};
 
 
 
@@ -353,6 +355,7 @@ async function loadCreditorsList() {
         
         
     };
+
     
 }
 
@@ -788,24 +791,24 @@ document.getElementById('downloadDatas').addEventListener('click', function () {
         Contact: debtor.inputContactNo
       }));
   
-      // Create worksheet
+      
       const worksheet = XLSX.utils.json_to_sheet(excelData, { origin: 'A1' });
   
-      // Add bold headers manually in row 1
+      
       const headers = ["Name", "Remaining Balance", "Contact"];
       XLSX.utils.sheet_add_aoa(worksheet, [headers], { origin: "A1" });
   
-      // Manually set column widths based on content
+      
       const colWidths = headers.map((header, i) => {
         const maxLength = Math.max(
           header.length,
           ...excelData.map(row => Object.values(row)[i]?.toString().length || 0)
         );
-        return { wch: maxLength + 4 }; // Add some padding
+        return { wch: maxLength + 4 };
       });
       worksheet["!cols"] = colWidths;
   
-      // Center align all cells
+      
       const range = XLSX.utils.decode_range(worksheet['!ref']);
       for (let R = range.s.r; R <= range.e.r; ++R) {
         for (let C = range.s.c; C <= range.e.c; ++C) {
@@ -815,14 +818,14 @@ document.getElementById('downloadDatas').addEventListener('click', function () {
           if (!worksheet[cell_ref].s) worksheet[cell_ref].s = {};
           worksheet[cell_ref].s.alignment = { horizontal: "center", vertical: "center" };
   
-          // Make first row bold
+       
           if (R === 0) {
             worksheet[cell_ref].s.font = { bold: true };
           }
         }
       }
   
-      // Create workbook and export
+      
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "Debtors");
       XLSX.writeFile(workbook, "debtors_backup.xlsx");
@@ -893,6 +896,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (document.getElementById("creditors")) {
         loadCreditorsList();
+        
 
     }
     if (document.getElementById("creditors")) {
